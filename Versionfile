@@ -6,7 +6,8 @@
 "1.0.x" => { :ref => "7075b1b483faa183679761f060072515e45dcaf7"}
 
 "1.1.x" => { :ref => "ccb4209c94a326f1760bef0b8a7fd32a3f4be121" }
-"2.0.x" => { :branch => "master" }
+"2.0.x" => { :branch => "2-0-stable" }
+"2.1.x" => { :branch => "master" }
 
 
 
