@@ -51,7 +51,7 @@ class Spree::Admin::RefundController < Spree::Admin::BaseController
 
   protected
   def create_discount_coupon(code, amount, description = nil, name = nil)
-    @coupon = Spree::Promotion.create(name: name,event_name: 'spree.checkout.coupon_code_added', usage_limit: 2)
+    @coupon = Spree::Promotion.create(name: name,event_name: 'spree.checkout.coupon_code_added', usage_limit: 1)
     @coupon.description = description unless description.try(&:empty?)
     @coupon.code = code
     action = @coupon.actions.build(type: 'Spree::Promotion::Actions::CreateAdjustment')
