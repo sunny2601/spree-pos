@@ -51,6 +51,9 @@
     <%= text_area_tag :coupon_description %></br>
     <%= label_tag :coupon_amount, Spree.t(:coupon_amount) %> <span class="required">*</span><br />
     <%= text_field_tag :coupon_amount %> <%= Spree.t(:rma_value) %>: <span id="rma_value">0.00</span>
+    <br />
+  <%= label_tag :stock_location, Spree.t(:stock_location) %>
+  <%= select_tag :stock_location_id, options_for_select(Spree::StockLocation.active.to_a.collect{|l|[l.name, l.id]}) %>
 
     <%= submit_tag 'Create refund' %>
 <% end %>

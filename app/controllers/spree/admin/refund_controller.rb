@@ -31,6 +31,7 @@ class Spree::Admin::RefundController < Spree::Admin::BaseController
     if @coupon_amount && @coupon_amount > 0
       create_discount_coupon  "#{@return_authorization.number}NI", @coupon_amount, @coupon_description, "REFUND #{@order.number}"
       @return_authorization.reason = "POS refund. Create coupon #{@coupon.code} with the amount #{params[:coupon_amount]}"
+      @return_authorization.stock_location_id = params[:stock_location_id]
     end
 
     (params[:return_quantity] || []).each { |variant_id, qty| @return_authorization.add_variant(variant_id.to_i, qty.to_i) }
