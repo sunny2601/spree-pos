@@ -5,7 +5,7 @@ require 'prawn/measurement_extensions'
 require 'barby/barcode/code_128'
 require 'barby/outputter/png_outputter'
 class Spree::Admin::BarcodeController < Spree::Admin::BaseController
-  before_filter :load 
+  before_filter :load, except: :stickers
   layout :false
   
   # moved to pdf as html has uncontrollable margins
@@ -29,6 +29,15 @@ class Spree::Admin::BarcodeController < Spree::Admin::BaseController
     end
     send_data pdf.render , :type => "application/pdf" , :filename => "#{name_show}.pdf"
   end
+
+  def stickers
+    @stickers = []
+    params[:stickers].each do |sticker|
+      variant = Spree::Variant.find sticker[:variant].to_i
+      barcode_path = create_barcode(variant)
+      @stickers << Spree::Sticker.new(variant, sticker[:number].to_i, barcode_path)
+    end
+  end
     
   
   private
@@ -42,6 +51,14 @@ class Spree::Admin::BarcodeController < Spree::Admin::BaseController
   
   def load
     @variant = Spree::Variant.find params[:id]
+  end
+
+  def create_barcode(variant)
+    barcode_path = "/variantsb/#{variant.sku}.png"
+    barcode_full_path = "#{Rails.public_path}#{barcode_path}"
+    barcode = Barby::Code128B.new(variant.sku)
+    File.open(barcode_full_path, 'w'){|f| f.write barcode.to_png }
+    return barcode_path
   end
 
 end

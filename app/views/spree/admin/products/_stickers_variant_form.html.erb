@@ -1,0 +1,7 @@
+<div class="field">
+  <%= form_tag admin_stickers_path do |form| %>
+    <%= hidden_field_tag 'stickers[][variant]', @variant.id %>
+    <%= number_field_tag 'stickers[][number]', @variant.total_on_hand %>
+    <%= submit_tag 'Imprimir pegatas' %>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print stickers</title>
+</head>
+
+<body>
+  <% @stickers.each do |sticker| %>
+    <% sticker.times.each do %>
+      <%= render partial: 'barcode_sticker', locals: { sticker: sticker } %>
+    <% end %>
+  <% end %>
+</body>
+</html>
