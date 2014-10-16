@@ -16,7 +16,9 @@ Spree::Core::Engine.routes.append do
       get "/find/:number" => "pos#find"
       get "/add/:number/:item" => "pos#add"
       get "/remove/:number/:item" => "pos#remove"
+      post "/print/:number" => "pos#print"
       get "/print/:number" => "pos#print"
+      get "/payment/:number" => "pos#payment", as: 'payment_pos'
       get "/inventory/:number" => "pos#inventory"
 
       scope :refund do

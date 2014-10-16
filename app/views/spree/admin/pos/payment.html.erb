@@ -1,0 +1,30 @@
+<div class="payment_methods">
+  <%= form_tag "/admin/pos/print/#{@order.number}" do |form| %>
+    <h2>Métodos de pago</h2>
+    <ul>
+      <% @payments.each do |payment| %>
+        <li>
+          <%= label_tag "payment_#{payment.id}", payment.name %>
+          <%= radio_button_tag 'payment', payment.id, false, 'data-calculator' => payment.use_calculator? %>
+        </li>
+      <% end %>
+    </ul>
+    <%= button_tag 'Pagar' %>
+  <% end %>
+  <div class="calculator_pos">
+    <div>
+      <p class="total_pay"><%= @order.display_total %></p>
+      <input id="given" type="number" />
+      <p>Total a devolver: <span id="return-money"></span>€</p>
+    </div>
+    <script>
+      $(function(){
+        $('#given').on('keyup',function(){
+          value = $(this).val();
+          total = <%= @order.total %>;
+          $('#return-money').html(value-total)
+        })
+      });
+    </script>
+  </div>
+</div>

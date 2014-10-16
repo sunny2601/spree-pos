@@ -6,7 +6,15 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
     @order = Spree::Order.find_by_number(order_number)
     raise "No order found for -#{order_number}-" unless @order
   end
-    
+
+  def payment
+    if @order.state == "complete"
+      redirect_to :action => :print and return
+    end
+    @payments = Spree::PaymentMethod.available(:pos)
+    render layout: 'spree/admin/layouts/popup_pos'
+  end
+
   def new
 
     begin
@@ -73,7 +81,7 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
       end
       if @order.payment_ids.empty?
         payment = Spree::Payment.new
-        payment.payment_method = Spree::PaymentMethod.find_by_type_and_environment( "Spree::PaymentMethod::Check" , Rails.env)
+        payment.payment_method = Spree::PaymentMethod.find params[:payment]
         payment.amount = @order.total
         payment.order = @order
         payment.save!
