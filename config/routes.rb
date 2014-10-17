@@ -31,7 +31,6 @@ Spree::Core::Engine.routes.append do
     end
 
     get "/pos" , :to => "pos#new"
-    get "/stock_products", to: "show_stock#index"
   end
 end
 
