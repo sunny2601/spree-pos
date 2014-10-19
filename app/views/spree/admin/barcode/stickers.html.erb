@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Print stickers</title>
-</head>
+<% count = 0 %>
+<% @stickers.each do |sticker| %>
+  <% sticker.times.each do %>
+    <% mod = count % 40; %>
 
-<body>
-  <% @stickers.each do |sticker| %>
-    <% sticker.times.each do %>
-      <%= render partial: 'barcode_sticker', locals: { sticker: sticker } %>
+    <% if mod == 0 %>
+      <div class="page">
     <% end %>
+
+    <%= render partial: 'barcode_sticker', locals: { sticker: sticker } %>
+
+    <% if mod == 39 %>
+      </div>
+    <% end %>
+
+    <% count += 1 %>
   <% end %>
-</body>
-</html>
+<% end %>
+</div>

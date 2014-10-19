@@ -37,6 +37,7 @@ class Spree::Admin::BarcodeController < Spree::Admin::BaseController
       barcode_path = create_barcode(variant)
       @stickers << Spree::Sticker.new(variant, sticker[:number].to_i, barcode_path)
     end
+    render layout: 'spree/admin/layouts/stickers'
   end
     
   

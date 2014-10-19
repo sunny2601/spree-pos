@@ -1,9 +1,10 @@
-<div class="data_sticker">
-  <span class="name_sticker"><%= sticker.variant.name %></span>
-  <span class="price_sticker"><%= sticker.variant.display_price %></span>
-  <span class="sku_sticker"><%= sticker.variant.sku %></span>
+<div class="sticker">
+  <div class="data_sticker">
+    <span class="name_sticker"><%= sticker.variant.name %></span>
+    <span class="sku_sticker"><%= sticker.variant.sku %></span>
+    <span class="price_sticker"><%= sticker.variant.display_price %></span>
+  </div>
+  <div class="data_image">
+    <img src="<%= sticker.barcode_path %>" height="40" width="132"/>
+  </div>
 </div>
-<div class="data_image">
-  <img src="<%= sticker.barcode_path %>" height="40" width="132"/>
-</div>
-

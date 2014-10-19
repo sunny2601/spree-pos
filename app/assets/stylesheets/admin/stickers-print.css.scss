@@ -1,0 +1,76 @@
+body,div {
+  margin: 0;
+  padding: 0;
+}
+
+div.sticker {
+  float: left;
+  padding: 1mm;
+  width: 42.5mm;
+  height: 23.7mm;
+  overflow: hidden;
+}
+
+.name_sticker {
+  font-family: 'Oswald';
+  font-size: 14px;
+  display: block;
+}
+
+.price_sticker {
+  font-family: 'Oswald';
+  display: block;
+  float: right;
+  font-size: 20px;
+}
+
+.sku_sticker {
+  font-size: 12px;
+  float: left;
+  display: block;
+}
+.profiler-results {
+  display: none !important;
+}
+/*
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.page {
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 2cm;
+  margin: 1cm auto;
+}
+.subpage {
+  padding: 1cm;
+  height: 256mm;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+*/
