@@ -3,7 +3,7 @@ Spree::Core::Engine.routes.append do
     scope :barcode do
       get "/print/:id" => "barcode#print"
       get "/code/:id" => "barcode#code"
-      post "/stickers/" => "barcode#stickers", as: 'stickers'
+      post "/stickers/" => "barcode#stickers"
     end
 
     get 'print_coupon/:coupon_code' => 'print_coupon#print'
