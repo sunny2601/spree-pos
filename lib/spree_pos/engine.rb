@@ -20,6 +20,10 @@ module SpreePos
         delegate_belongs_to :master, :ean
       end
     end
+    initializer "spree.paypal_express.payment_methods", :after => "spree.register.payment_methods" do |app|
+      app.config.spree.payment_methods << Spree::PaymentMethod::MoneyPos
+      app.config.spree.payment_methods << Spree::PaymentMethod::CreditCardPos
+    end
 
     config.to_prepare &method(:activate).to_proc
   end
