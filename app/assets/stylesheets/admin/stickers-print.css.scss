@@ -48,10 +48,10 @@ img {
   height: auto !important;
 }
 
-.name_sticker, .sku_sticker, .price_sticker {
-  width: 33%;
-  text-align: center;
+.sku_sticker, .price_sticker {
+  width: 50%;
   display: block;
+  text-align: center;
   float: left;
 }
 
