@@ -1,37 +1,51 @@
-body,div {
+
+body, div {
   margin: 0;
   padding: 0;
 }
 
+.page {
+  width: 19.96cm;
+  font-family: 'Oswald';
+  font-size: 0.8em;
+} 
+
 div.sticker {
   float: left;
-  padding: 1mm;
-  width: 42.5mm;
-  height: 23.7mm;
+  padding: 0;
+  width: 4.24cm;
+  height: 1.95cm;
+  margin-right: 1cm !important;
+  margin-bottom: 1cm !important;
   overflow: hidden;
+  &:nth-child(4n+4) {
+    margin-right: 0 !important;
+  }
+}
+
+.name_sticker, .sku_sticker {
+  width: 60%;
+  float: left;
 }
 
 .name_sticker {
-  font-family: 'Oswald';
-  font-size: 14px;
   display: block;
 }
 
 .price_sticker {
-  font-family: 'Oswald';
+  width: 40%;
   display: block;
   float: right;
-  font-size: 20px;
 }
 
 .sku_sticker {
-  font-size: 12px;
   float: left;
   display: block;
 }
 .profiler-results {
   display: none !important;
 }
+
 /*
 body {
   margin: 0;
