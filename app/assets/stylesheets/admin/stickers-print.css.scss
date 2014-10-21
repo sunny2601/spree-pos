@@ -1,47 +1,62 @@
+/* margin print */
+
+@page{
+   margin: 0;
+}
+
+/* css sticker */
 
 body, div {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .page {
-  width: 19.96cm;
+  width: 210mm;
+  overflow: hidden;
   font-family: 'Oswald';
   font-size: 0.8em;
 } 
 
+.data_sticker {
+  overflow: hidden;
+}
+
 div.sticker {
-  float: left;
-  padding: 0;
   width: 4.24cm;
-  height: 1.95cm;
+  height: 1.95cm !important;
   margin-right: 1cm !important;
   margin-bottom: 1cm !important;
+  float: left;
   overflow: hidden;
   &:nth-child(4n+4) {
     margin-right: 0 !important;
   }
+  &:nth-child(37),  &:nth-child(38),  &:nth-child(39),  &:nth-child(40) {
+    margin-bottom: 0 !important;
+  }
 }
 
-.name_sticker, .sku_sticker {
-  width: 60%;
+img {
+  width: 100%; 
+  height: auto !important;
+}
+
+.name_sticker, .sku_sticker, .price_sticker {
+  width: 33%;
+  display: block;
   float: left;
-}
-
-.name_sticker {
-  display: block;
-}
-
-.price_sticker {
-  width: 40%;
-  display: block;
-  float: right;
 }
 
 .sku_sticker {
-  float: left;
-  display: block;
+  font-weight: 300;
+  opacity: 0.7;
 }
+
+.price_sticker {
+  text-align: right;
+}
+
 .profiler-results {
   display: none !important;
 }
