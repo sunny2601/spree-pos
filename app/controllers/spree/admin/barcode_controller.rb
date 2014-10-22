@@ -32,6 +32,7 @@ class Spree::Admin::BarcodeController < Spree::Admin::BaseController
 
   def stickers
     @stickers = []
+    @stickers << Spree::Sticker.new(nil, params[:stickers_white].to_i, nil)  if params[:stickers_white].to_i > 0
     params[:stickers].each do |sticker|
       variant = Spree::Variant.find sticker[:variant].to_i
       barcode_path = create_barcode(variant)

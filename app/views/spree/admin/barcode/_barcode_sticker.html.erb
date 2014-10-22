@@ -1,10 +1,12 @@
 <div class="sticker">
-  <div class="data_sticker">
-    <div class="name_product"><%= sticker.variant.name.truncate(27,omission: '') %></div>
-    <span class="sku_sticker"><%= sticker.variant.sku %></span>
-    <span class="price_sticker"><%= sticker.variant.display_price %></span>
-  </div>
-  <div class="data_image">
-    <img src="<%= sticker.barcode_path %>" height="40" width="132"/>
-  </div>
+  <% unless sticker.variant.nil? %>
+    <div class="data_sticker">
+      <div class="name_product"><%= sticker.variant.name.truncate(27,omission: '') %></div>
+      <span class="sku_sticker"><%= sticker.variant.sku %></span>
+      <span class="price_sticker"><%= sticker.variant.display_price %></span>
+    </div>
+    <div class="data_image">
+      <img src="<%= sticker.barcode_path %>" height="40" width="132"/>
+    </div>
+  <% end %>
 </div>
