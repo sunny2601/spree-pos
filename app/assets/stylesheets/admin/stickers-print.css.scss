@@ -14,18 +14,19 @@ body, div {
 .page {
   width: 210mm;
   height: 297mm;
+  text-align: center;
   overflow: hidden;
   font-family: 'Oswald';
   font-size: 0.8em;
 } 
 
 .data_sticker {
-  line-height: 35px;
+  line-height: 20px;
   overflow: hidden;
 }
 
 .data_image {
-  margin-top: -10px !important;
+  margin-top: -2px !important;
 }
 
 div.sticker {
@@ -49,7 +50,6 @@ img {
 .sku_sticker, .price_sticker {
   width: 50%;
   display: block;
-  text-align: center;
   float: left;
 }
 
