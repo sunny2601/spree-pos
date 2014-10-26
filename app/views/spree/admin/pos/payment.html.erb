@@ -9,6 +9,28 @@
         </li>
       <% end %>
     </ul>
+    <h2>¿Nos has conocido por la página web de nigramercato?</h2>
+    <ul>
+      <li>
+        <%= label_tag "pos_know_website_false", 'No' %>
+        <%= radio_button_tag 'pos_know_website', false, true %>
+      </li>
+      <li>
+        <%= label_tag "pos_know_website_true", 'Sí' %>
+        <%= radio_button_tag 'pos_know_website', true, false %>
+      </li>
+    </ul>
+    <h2>¿Ya ha comprado el cliente anteriormente?</h2>
+    <ul>
+      <li>
+        <%= label_tag "pos_returning_user_false", 'No' %>
+        <%= radio_button_tag 'pos_returning_user', false, true %>
+      </li>
+      <li>
+        <%= label_tag "pos_returning_user_true", 'Sí' %>
+        <%= radio_button_tag 'pos_returning_user', true, false %>
+      </li>
+    </ul>
     <%= button_tag 'Pagar' %>
   <% end %>
   <div class="calculator_pos">
