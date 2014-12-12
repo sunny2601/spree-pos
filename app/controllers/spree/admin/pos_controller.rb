@@ -1,6 +1,6 @@
 class Spree::Admin::PosController < Spree::Admin::BaseController
-  before_filter :get_order , :except => :new
-  
+  before_filter :get_order , :except => [:new, :report]
+
   def get_order
     order_number = params[:number]
     @order = Spree::Order.find_by_number(order_number)
@@ -175,7 +175,31 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
       init_search
     end
   end
-    
+
+  def report
+    @payment_methods = Spree::PaymentMethod.where(:display_on => 'pos').each_with_object({}) { |pm,counts| counts[pm] = {} }
+
+    params[:q] = {} unless params[:q]
+
+    if params[:q][:updated_at_gt].blank?
+      params[:q][:updated_at_gt] = Time.zone.now
+    else
+      params[:q][:updated_at_gt] = Time.zone.parse(params[:q][:updated_at_gt]) rescue Time.zone.now.beginning_of_month
+    end
+
+    if params[:q] && !params[:q][:updated_at_lt].blank?
+      params[:q][:updated_at_lt] = Time.zone.parse(params[:q][:updated_at_lt]) rescue ''
+    end
+
+    params[:q][:s] ||= 'updated_at desc'
+
+    @search = Spree::Payment.where(:state => 'completed').ransack(params[:q])
+    @payment_methods.each do |pm,value|
+      search = pm.payments.where(:state => 'completed').ransack(params[:q])
+      payments = search.result
+      value[:total] = Spree::Money.new(payments.map(&:amount).reduce(&:+), { :currency => 'EUR' }).money
+    end
+  end
   protected
   
   def add_notice no

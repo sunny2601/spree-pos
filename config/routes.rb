@@ -20,6 +20,7 @@ Spree::Core::Engine.routes.append do
       get "/print/:number" => "pos#print"
       get "/payment/:number" => "pos#payment"
       get "/inventory/:number" => "pos#inventory"
+      get "/report" => "pos#report"
 
       scope :refund do
         get 'select_order' => 'refund#select_order'

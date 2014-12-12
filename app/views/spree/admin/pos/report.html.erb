@@ -1,0 +1,37 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'DateTimePicker' %>
+  <%= javascript_include_tag 'DateTimePicker' %>
+  <%= javascript_tag do %>
+    $(document).ready(function()
+    {
+
+    $("#dtBox").DateTimePicker();
+
+    });
+  <% end %>
+<% end %>
+<h3>Estadísticas</h3>
+<%= search_form_for @search, :url => spree.admin_report_path  do |s| %>
+  <div class="date-range-filter field align-center">
+    <%= label_tag nil, Spree.t(:start), :class => 'inline' %>
+    <%= s.text_field :updated_at_gt, :data => { :field => 'datetime' }, :class => 'datepicker-from', :value => datetimepicker_field_value(params[:q][:updated_at_gt]) %>
+
+    <span class="range-divider">
+          <i class="icon-arrow-right"></i>
+        </span>
+
+    <%= s.text_field :updated_at_lt, :data => { :field => 'datetime' }, :class => 'datepicker-to', :value => datetimepicker_field_value(params[:q][:updated_at_lt]) %>
+    <%= label_tag nil, Spree.t(:end), :class => 'inline' %>
+    <div id="dtBox"></div>
+  </div>
+
+  <div class="actions filter-actions">
+    <%= button Spree.t(:search), 'icon-search'  %>
+  </div>
+<% end %>
+<hr />
+<ul>
+<%- @payment_methods.each do |pm,value| %>
+  <li><%= pm.name %>: <%= value[:total].format %></li>
+<% end %>
+</ul>
