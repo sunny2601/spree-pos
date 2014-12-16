@@ -76,6 +76,7 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
   def print
     if @order.state != "complete"
       self.set_shipping_method
+      @order.update_attributes(:pos_sell => true)
       unless @order.payment_ids.empty?
         @order.payments.first.delete unless @order.payments.first.amount == @order.total
       end
@@ -88,7 +89,6 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
         payment.capture!
       end
       @order.state = "complete"
-      @order.pos_sell = true
       @order.pos_know_website = ('true' == params[:pos_know_website])
       @order.pos_returning_user = ('true' == params[:pos_returning_user])
       @order.completed_at = Time.now
