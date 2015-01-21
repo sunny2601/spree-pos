@@ -177,7 +177,7 @@ class Spree::Admin::PosController < Spree::Admin::BaseController
   end
 
   def report
-    @payment_methods = Spree::PaymentMethod.where(:display_on => 'pos').each_with_object({}) { |pm,counts| counts[pm] = {} }
+    @payment_methods = Spree::PaymentMethod.all.each_with_object({}) { |pm,counts| counts[pm] = {} }
 
     params[:q] = {} unless params[:q]
 
